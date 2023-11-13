@@ -1,11 +1,11 @@
+@Grapes([
+        @Grab(group='commons-cli', module='commons-cli', version='1.5.0')
+])
+
 import groovy.cli.commons.CliBuilder
 import groovy.io.FileType
 import groovy.json.JsonSlurper
 import org.apache.commons.cli.Option
-
-@Grapes([
-        @Grab(group='commons-cli', module='commons-cli', version='1.5.0')
-])
 
 static void main(String[] args) {
   def cli = new CliBuilder(usage: 'localizationChecker [options]', header: 'Options:');
@@ -15,7 +15,7 @@ static void main(String[] args) {
   cli.p(longOpt: 'path', required: true, args: 1, argName: 'path', 'Path to search for localization entities')
   cli.e(longOpt: 'extensions', 'required': false, args: Option.UNLIMITED_VALUES, argName: 'ext,...', valueSeparator: ',', '(Optional) Scan file extensions (comma separated) to process (json files always excluded)')
 
-  def options = cli.parse(this.args)
+  def options = cli.parse(args)
   if (!options) {
     return
   }
